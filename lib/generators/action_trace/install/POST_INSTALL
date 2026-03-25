@@ -1,0 +1,29 @@
+
+===============================================================================
+
+  ActionTrace installed successfully!
+
+  Next steps:
+
+  1. Run migrations:
+
+       rails db:migrate
+
+  2. Mount the engine in config/routes.rb:
+
+       mount ActionTrace::Engine, at: "/action_trace"
+
+  3. Include ActivityTrackable in your ApplicationController to track page visits:
+
+       include ActivityTrackable
+
+  4. Include DataTrackable in any model you want to track:
+
+       include ActionTrace::DataTrackable
+
+  5. (Optional) Customize views:
+
+       rails generate action_trace:views
+       rails generate action_trace:views --controller
+
+===============================================================================

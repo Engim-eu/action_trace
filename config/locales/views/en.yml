@@ -1,0 +1,24 @@
+en:
+  activity_logs:
+    index:
+      title: "Activity Log"
+      history_detail: "Change Details"
+      all_sources: "All sources"
+      no_activity_logs: "No activity logs..."
+      data_create: "Creation"
+      data_change: "Change"
+      data_destroy: "Deletion"
+      page_visit: "Navigation"
+      session_start: "Session Start"
+      session_end: "Session End"
+      session_details: "Session Details"
+      system_activity: "System Activity"
+      start_date: "Start date"
+      end_date: "End date"
+      sources:
+        data_create: "Data creation"
+        data_change: "Data changes"
+        data_destroy: "Data deletion"
+        page_visit: "Page navigation"
+        session_start: "Portal logins"
+        session_end: "Portal logouts"

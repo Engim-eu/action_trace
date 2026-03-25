@@ -1,0 +1,13 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= ActionTrace::ActivityLog.human_attribute_name(:occurred_at) %></th>
+      <th><%= ActionTrace::ActivityLog.human_attribute_name(:source) %></th>
+      <th><%= ActionTrace::ActivityLog.human_attribute_name(:user) %></th>
+      <th><%= ActionTrace::ActivityLog.human_attribute_name(:raw_subject) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'activity_log', collection: @activity_logs, as: :activity_log %>
+  </tbody>
+</table>

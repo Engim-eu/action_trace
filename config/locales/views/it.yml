@@ -1,0 +1,24 @@
+it:
+  activity_logs:
+    index:
+      title: "Registro Attività"
+      history_detail: "Dettaglio Modifiche"
+      all_sources: "Tutte le sorgenti"
+      no_activity_logs: "Nessun registro attività..."
+      data_create: "Creazione"
+      data_change: "Modifica"
+      data_destroy: "Cancellazzione"
+      page_visit: "Navigazione"
+      session_start: "Inizio Sessione"
+      session_end: "Fine Sessione"
+      session_details: "Dettagli Sessione"
+      system_activity: "Attività di Sistema"
+      start_date: "Data inizio"
+      end_date: "Data fine"
+      sources:
+        data_create: "Creazione di dati"
+        data_change: "Modifiche ai dati"
+        data_destroy: "Cancellazzione di dati"
+        page_visit: "Navigazione delle pagine"
+        session_start: "Accessi al portale"
+        session_end: "Logout dal portale"

@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+class AddVersionIdToActivities < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    add_column :activities, :version_id, :integer
+  end
+end

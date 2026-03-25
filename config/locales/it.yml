@@ -1,0 +1,18 @@
+it:
+  activemodel:
+    models:
+      action_trace/activity_log: "Registro Attività"
+    attributes:
+      action_trace/activity_log:
+        occurred_at: "Data e Ora"
+        source: "Sorgente"
+        user: "Utente"
+        raw_subject: "Oggetto"
+  list: "Elenco"
+  details: "Dettaglio"
+  no_results_found: "Non ci sono elementi da visualizzare al momento."
+  go_to_page: "Visualizza Pagina"
+  params: "Parametri"
+  data: "Dati"
+  old_value: "Valore precedente"
+  new_value: "Nuovo valore"

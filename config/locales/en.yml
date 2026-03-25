@@ -1,0 +1,21 @@
+en:
+  activemodel:
+    models:
+      action_trace/activity_log: "Activity Log"
+    attributes:
+      action_trace/activity_log:
+        occurred_at: "Date and Time"
+        source: "Source"
+        user: "User"
+        raw_subject: "Subject"
+  list: "List"
+  details: "Details"
+  new: "New"
+  edit: "Edit"
+  destroy: "Delete"
+  no_results_found: "There are no items to display at the moment."
+  go_to_page: "Go to Page"
+  params: "Parameters"
+  data: "Data"
+  old_value: "Previous value"
+  new_value: "New value"
