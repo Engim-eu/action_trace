@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'interactor'
 require 'action_trace/version'
 require 'action_trace/configuration'
 require 'action_trace/engine'

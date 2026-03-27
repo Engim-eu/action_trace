@@ -2,7 +2,7 @@
 
 module ActionTrace
   class MergeAndFormatResults
-    include Interactor
+    include ::Interactor
     include ActivityLogFetchable
 
     def call

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-27
+
+### Fixed
+- `Interactor` and `Interactor::Organizer` now included with fully-qualified `::Interactor` to avoid constant lookup conflicts inside the `ActionTrace` namespace
+- `interactor` gem explicitly required in `lib/action_trace.rb` so the dependency is always loaded before the engine boots
+- `action_trace:views --controller` generator fixed: source path had one extra `../` and resolved outside the gem directory
+
+### Changed
+- README fully restructured: clearer installation section, usage split by models vs controllers, customisation options documented (e.g. `skip_after_action :track_action`), `has_paper_trail` and discard usage clarified
+
 ## [0.2.0] - 2026-03-27
 
 ### Fixed

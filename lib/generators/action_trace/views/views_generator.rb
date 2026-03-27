@@ -22,7 +22,7 @@ module ActionTrace
         return unless options[:controller]
 
         copy_file(
-          File.expand_path('../../../../../app/controllers/action_trace/activity_logs_controller.rb', __dir__),
+          File.expand_path('../../../../app/controllers/action_trace/activity_logs_controller.rb', __dir__),
           'app/controllers/action_trace/activity_logs_controller.rb'
         )
       end

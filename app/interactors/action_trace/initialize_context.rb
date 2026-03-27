@@ -2,7 +2,7 @@
 
 module ActionTrace
   class InitializeContext
-    include Interactor
+    include ::Interactor
 
     def call
       filters = context.filters || {}

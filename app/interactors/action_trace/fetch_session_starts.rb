@@ -2,7 +2,7 @@
 
 module ActionTrace
   class FetchSessionStarts
-    include Interactor
+    include ::Interactor
     include ActivityLogFetchable
 
     def call

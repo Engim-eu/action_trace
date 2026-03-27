@@ -2,7 +2,7 @@
 
 module ActionTrace
   class FetchActivityLogs
-    include Interactor::Organizer
+    include ::Interactor::Organizer
 
     organize ActionTrace::InitializeContext,
              ActionTrace::FetchDataChanges,
