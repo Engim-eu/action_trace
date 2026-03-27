@@ -1,5 +1,7 @@
 # ActionTrace
 
+[![Gem Version](https://badge.fury.io/rb/action_trace.svg)](https://rubygems.org/gems/action_trace)
+
 ActionTrace is a Rails engine that consolidates user interaction tracking into a single integration point. Instead of configuring [public_activity](https://github.com/chaps-io/public_activity), [ahoy_matey](https://github.com/ankane/ahoy), [paper_trail](https://github.com/paper-trail-gem/paper_trail), and [discard](https://github.com/jhawthorn/discard) individually, ActionTrace wires them together and exposes a unified activity log with a ready-to-use UI.
 
 | Source | Description | Backed by |
