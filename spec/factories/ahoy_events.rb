@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :ahoy_event, class: 'Ahoy::Event' do
-    association :visit, factory: :ahoy_visit
-    association :user
+    visit factory: %i[ahoy_visit]
+    user
 
     name { 'page_visit' }
     properties { { path: '/areas', method: 'GET', controller: 'areas', action: 'index' } }

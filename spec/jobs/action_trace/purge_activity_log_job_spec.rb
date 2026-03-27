@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActionTrace::PurgeActivityLogJob, type: :job do
+RSpec.describe ActionTrace::PurgeActivityLogJob do
   describe '#perform' do
     let(:old_date) { 14.months.ago }
     let(:recent_date) { 6.months.ago }
@@ -44,8 +44,8 @@ RSpec.describe ActionTrace::PurgeActivityLogJob, type: :job do
         described_class.perform_now
       end.to change(PublicActivity::Activity, :count).by(-1)
 
-      expect(PublicActivity::Activity.exists?(recent_activity.id)).to be_truthy
-      expect(PublicActivity::Activity.exists?(old_activity.id)).to be_falsey
+      expect(PublicActivity::Activity).to exist(recent_activity.id)
+      expect(PublicActivity::Activity).not_to exist(old_activity.id)
     end
   end
 end

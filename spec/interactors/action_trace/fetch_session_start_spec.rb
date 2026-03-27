@@ -58,7 +58,7 @@ RSpec.describe ActionTrace::FetchSessionStarts, type: :interactor do
         context.start_date = 1.day.ago.to_date.to_s
         described_class.call(context)
 
-        ids = context.raw_collection.map { |e| e[:id] }
+        ids = context.raw_collection.pluck(:id)
         expect(ids).to include("visit_#{new_visit.id}")
         expect(ids).not_to include("visit_#{old_visit.id}")
       end
@@ -67,7 +67,7 @@ RSpec.describe ActionTrace::FetchSessionStarts, type: :interactor do
         context.end_date = 1.day.ago.to_date.to_s
         described_class.call(context)
 
-        ids = context.raw_collection.map { |e| e[:id] }
+        ids = context.raw_collection.pluck(:id)
         expect(ids).to include("visit_#{old_visit.id}")
         expect(ids).not_to include("visit_#{new_visit.id}")
       end

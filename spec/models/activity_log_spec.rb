@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ActionTrace::ActivityLog, type: :model do
+RSpec.describe ActionTrace::ActivityLog do
+  subject { described_class.new(attributes) }
+
   let(:user) { create(:user) }
   let(:attributes) do
     {
@@ -15,8 +17,6 @@ RSpec.describe ActionTrace::ActivityLog, type: :model do
       trackable_type: 'User'
     }
   end
-
-  subject { described_class.new(attributes) }
 
   describe '#initialize' do
     it 'assigns attributes correctly' do

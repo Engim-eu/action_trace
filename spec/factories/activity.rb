@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :activity, class: 'PublicActivity::Activity' do
-    association :owner, factory: :user
-    association :trackable, factory: :area
+    owner factory: %i[user]
+    trackable factory: %i[area]
     key { 'area.update' }
     parameters { {} }
   end

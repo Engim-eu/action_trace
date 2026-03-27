@@ -7,7 +7,7 @@ RSpec.describe ActionTrace::ActivityLogsController, type: :controller do
 
   let(:user) { double('User', company_id: 42) }
 
-  before :each do
+  before do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
@@ -20,7 +20,7 @@ RSpec.describe ActionTrace::ActivityLogsController, type: :controller do
       ).and_return(interactor_result)
 
       get :index
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:ok)
       expect(response).to render_template(:index)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe ActionTrace::ActivityLogsController, type: :controller do
       allow(ActionTrace::FetchActivityLogs).to receive(:call).and_return(interactor_result)
 
       get :index, xhr: true
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:ok)
       expect(response.headers['Cache-Control']).to eq('no-store')
       expect(response).to render_template(partial: '_index')
     end

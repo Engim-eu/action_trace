@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
   spec.description = 'ActionTrace glues together public_activity, ahoy_matey, paper_trail, and discard ' \
                      'to provide a unified interface for activity tracking, visit analytics, ' \
                      'model versioning, and soft deletes in Rails applications.'
-  spec.license     = 'MIT'
+  spec.license = 'MIT'
+  spec.required_ruby_version = '>= 3.1'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
@@ -29,6 +30,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rails-controller-testing'
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-factory_bot'
   spec.add_development_dependency 'rubocop-rails'
+  spec.add_development_dependency 'rubocop-rspec'
+  spec.add_development_dependency 'rubocop-rspec_rails'
+
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

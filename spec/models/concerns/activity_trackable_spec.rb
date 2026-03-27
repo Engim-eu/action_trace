@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActionTrace::DataTrackable, type: :model do
+RSpec.describe ActionTrace::DataTrackable do
   let(:user) { create(:user) }
   let(:area) { build(:area) }
 
@@ -13,7 +13,7 @@ RSpec.describe ActionTrace::DataTrackable, type: :model do
   describe 'callbacks' do
     it 'tracks activity on create' do
       name = 'Test Area'
-      area = FactoryBot.build(:area, name:)
+      area = build(:area, name:)
 
       expect { area.save! }.to change(PublicActivity::Activity, :count).by(1)
 

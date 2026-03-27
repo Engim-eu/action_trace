@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :ahoy_visit, class: 'Ahoy::Visit' do
-    association :user
+    user
     visit_token { SecureRandom.uuid }
     visitor_token { SecureRandom.uuid }
     started_at { Time.current }
