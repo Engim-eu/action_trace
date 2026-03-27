@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'public_activity'
+require 'ahoy_matey'
+require 'paper_trail'
+
 module ActionTrace
   class Engine < ::Rails::Engine
     isolate_namespace ActionTrace
