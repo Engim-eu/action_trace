@@ -49,5 +49,8 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
 
+      - name: Set up test database
+        run: bin/rails db:test:prepare
+
       - name: Run tests
         run: bundle exec rspec
