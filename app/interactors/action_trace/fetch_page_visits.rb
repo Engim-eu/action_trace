@@ -42,7 +42,7 @@ module ActionTrace
         id: "ahoy_#{event.id}",
         source: event.name == 'session_end' ? 'session_end' : 'page_visit',
         occurred_at: event.time,
-        user: event.user&.complete_name,
+        user: event.user,
         url: props['path'],
         details: props
       }

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-03-30
+
+### Added
+- `ActivityLog` now exposes a `company` attribute, derived from `user.company` when the user responds to that method
+
+### Changed
+- `user` field in `FetchDataChanges`, `FetchPageVisits`, and `FetchSessionStarts` now returns the full user object instead of `complete_name`, giving callers full access to user attributes
+- `install_generator`: `filter_by_company` for Ahoy models (`Visit`, `Event`) is now injected directly into the host app's model files during `ahoy:install`, replacing the engine-level `define_singleton_method` approach
+
+### Fixed
+- `ActivityLogFetchable`: `company_id` scope is no longer applied when the model does not define a `company_id` column, preventing unintended `WHERE company_id = ?` queries on unrelated models
+- `views_generator`: `copy_views` now uses an absolute path resolved via `__dir__` to correctly locate source views inside the gem regardless of the calling context
+
 ## [0.3.0] - 2026-03-27
 
 ### Fixed

@@ -15,7 +15,10 @@ module ActionTrace
       end
 
       def copy_views
-        directory 'views/action_trace', 'app/views/action_trace'
+        directory(
+          File.expand_path('../../../../app/views/action_trace', __dir__),
+          'app/views/action_trace'
+        )
       end
 
       def copy_controller

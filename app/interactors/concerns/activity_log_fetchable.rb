@@ -21,8 +21,10 @@ module ActivityLogFetchable
     if context.company_id.present?
       scope = if model_class.respond_to?(:filter_by_company)
                 model_class.filter_by_company(scope, context.company_id)
-              else
+              elsif model_class.method_defined?(:company_id)
                 scope.where(company_id: context.company_id)
+              else
+                scope
               end
     end
 

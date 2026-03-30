@@ -19,7 +19,7 @@ module ActionTrace
           id: "visit_#{visit.id}",
           source: 'session_start',
           occurred_at: visit.started_at,
-          user: visit.user&.complete_name,
+          user: visit.user,
           subject: "#{visit.browser} on #{visit.os} (#{visit.ip})",
           details: visit.attributes.slice('ip', 'browser', 'os', 'device_type', 'country', 'landing_page', 'user_agent')
         }

@@ -60,7 +60,7 @@ RSpec.describe ActionTrace::FetchActivityLogs, type: :interactor do
       let(:user) { double(:user, id: 2) }
 
       before do
-        stub_const('Area', Class.new(ApplicationRecord) { self.table_name = 'areas' })
+        stub_const('Area', Class.new(ApplicationRecord) { self.table_name = 'areas'; def company_id; 1; end; })
       end
 
       it 'filters by company_id when present' do

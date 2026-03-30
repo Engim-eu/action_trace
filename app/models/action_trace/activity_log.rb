@@ -6,7 +6,7 @@ module ActionTrace
     include ActionTrace::ActivityLogPresenter
 
     attr_reader :id, :source, :occurred_at, :user, :raw_subject, :details, :url, :paper_trail_version, :trackable,
-                :trackable_type
+                :trackable_type, :company
 
     SOURCES = {
       data_create: 'data_create',
@@ -28,6 +28,7 @@ module ActionTrace
       @paper_trail_version = attributes[:paper_trail_version]
       @trackable = attributes[:trackable]
       @trackable_type = attributes[:trackable_type]
+      @company = attributes[:user]&.company if attributes[:user].respond_to?(:company)
     end
 
     def data_create?

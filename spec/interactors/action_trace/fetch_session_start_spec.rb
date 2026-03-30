@@ -38,7 +38,7 @@ RSpec.describe ActionTrace::FetchSessionStarts, type: :interactor do
       expect(entry).to include(
         :id, :source, :occurred_at, :user, :subject, :details
       )
-      expect(entry[:user]).to eq(user.complete_name)
+      expect(entry[:user]).to eq(user)
     end
 
     context 'when source filter is different' do

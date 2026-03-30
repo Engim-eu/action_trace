@@ -30,6 +30,7 @@ module ActionTrace
 
       def run_ahoy_install
         generate 'ahoy:install' unless options[:skip_ahoy]
+        inject_ahoy_filter_by_company
       end
 
       def run_paper_trail_install
@@ -50,6 +51,23 @@ module ActionTrace
       def create_initializer
         template 'initializers/action_trace.rb.tt', 'config/initializers/action_trace.rb'
       end
+
+      private
+
+      def inject_ahoy_filter_by_company
+        filter_method = <<~RUBY
+
+          def self.filter_by_company(scope, company_id)
+            scope.joins(:user).where(users: { company_id: company_id })
+          end
+        RUBY
+
+        %w[visit event].each do |model|
+          inject_into_file "app/models/ahoy/#{model}.rb", filter_method, before: "  end\nend\n"
+        end
+      end
+
+      public
 
       def show_post_install_message
         readme 'POST_INSTALL' if behavior == :invoke

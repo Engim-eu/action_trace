@@ -19,7 +19,7 @@ module ActionTrace
           id: "act_#{activity.id}",
           source: source_type(activity),
           occurred_at: activity.created_at,
-          user: activity.owner&.complete_name,
+          user: activity.owner,
           trackable_type: activity.trackable_type,
           details: activity.parameters || {},
           paper_trail_version: PaperTrail::Version.find_by(id: activity.version_id),
