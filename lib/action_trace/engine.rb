@@ -12,10 +12,6 @@ module ActionTrace
       g.test_framework :rspec
     end
 
-    config.to_prepare do
-      ActionTrace::ApplicationController.helper Rails.application.routes.url_helpers
-    end
-
     config.after_initialize do
       begin
         user_class = ActionTrace.configuration.user_class.constantize
