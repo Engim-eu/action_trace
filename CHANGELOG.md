@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-04-14
+
+### Changed
+- `ApplicationController`: host app URL helpers (`_path`/`_url`) are now proxied via `method_missing` on an inline helper module instead of including `Rails.application.routes.url_helpers` globally, avoiding route conflicts between the engine and the host app
+
 ## [0.5.0] - 2026-04-14
 
 ### Added
