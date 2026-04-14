@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-14
+
+### Added
+- `Engine`: `config.to_prepare` now includes `Rails.application.routes.url_helpers` in `ActionTrace::ApplicationController`, making host app URL helpers available in engine controllers and views
+
 ## [0.4.0] - 2026-03-30
 
 ### Added
