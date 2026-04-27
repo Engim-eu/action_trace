@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-04-27
+
+### Changed
+- `install_generator`: removed `inject_body_tracking_attributes` — the generator no longer patches `app/views/layouts/application.html.erb` automatically. Add the `data-track-*` attributes to your `<body>` tag manually (instructions printed in the post-install message and documented in the README)
+
+### Added
+- POST_INSTALL message now includes the exact `<body>` snippet to copy
+- README: new "JavaScript — client-side page visit tracking" section documenting the `action_trace.js` script and the required body attributes, including a conditional variant for unauthenticated pages
+
 ## [0.6.0] - 2026-04-14
 
 ### Changed

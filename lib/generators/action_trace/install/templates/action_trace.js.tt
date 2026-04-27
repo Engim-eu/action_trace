@@ -1,0 +1,14 @@
+import "ahoy"
+
+document.addEventListener('turbo:load', () => {
+  const { trackController, trackAction, trackCompanyId, trackMethod } = document.body.dataset
+  if (!trackController) return
+
+  ahoy.track('page_visit', {
+    path: window.location.pathname,
+    controller: trackController,
+    action: trackAction,
+    company_id: trackCompanyId,
+    method: trackMethod
+  })
+})

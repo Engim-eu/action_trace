@@ -29,7 +29,10 @@ module ActionTrace
                                           desc: 'Skip discard generator (already installed)'
 
       def run_ahoy_install
-        generate 'ahoy:install' unless options[:skip_ahoy]
+        unless options[:skip_ahoy]
+          generate 'ahoy:install'
+          patch_ahoy_initializer
+        end
         inject_ahoy_filter_by_company
       end
 
@@ -52,7 +55,34 @@ module ActionTrace
         template 'initializers/action_trace.rb.tt', 'config/initializers/action_trace.rb'
       end
 
+      def pin_ahoy_for_importmap
+        return if options[:skip_ahoy]
+        return unless File.exist?('config/importmap.rb')
+
+        append_to_file 'config/importmap.rb', %(pin "ahoy", to: "ahoy.js"\n)
+      end
+
+      def import_ahoy_in_javascript
+        return if options[:skip_ahoy]
+        return unless File.exist?('app/javascript/application.js')
+
+        append_to_file 'app/javascript/application.js', %(import "ahoy"\n)
+      end
+
+      def create_javascript_tracking_file
+        return if options[:skip_ahoy]
+        return unless File.exist?('app/javascript')
+
+        template 'action_trace.js.tt', 'app/javascript/action_trace.js'
+        append_to_file 'app/javascript/application.js', %(import "./action_trace"\n) if File.exist?('app/javascript/application.js')
+      end
+
       private
+
+      def patch_ahoy_initializer
+        gsub_file 'config/initializers/ahoy.rb', 'Ahoy.api = false', 'Ahoy.api = true'
+        append_to_file 'config/initializers/ahoy.rb', "\nAhoy.server_side_visits = false\n"
+      end
 
       def inject_ahoy_filter_by_company
         filter_method = <<~RUBY

@@ -108,6 +108,26 @@ end
 
 For soft-delete tracking with discard, add `include Discard::Model` alongside `DataTrackable`. The `data_destroy` event is still recorded via the `before_destroy` callback.
 
+### JavaScript — client-side page visit tracking
+
+The installer copies `app/javascript/action_trace.js` and imports it from `application.js`. The script reads data attributes from the `<body>` tag on every Turbo page load and fires an Ahoy `page_visit` event.
+
+You must add those attributes to your layout manually:
+
+```erb
+<body
+  data-track-controller="<%= controller_name %>"
+  data-track-action="<%= action_name %>"
+  data-track-company-id="<%= current_user.company_id %>"
+  data-track-method="<%= request.method %>">
+```
+
+If the `data-track-controller` attribute is absent the script exits early and no event is sent, so pages where the user is not logged in (and `current_user` is nil) are safe as long as you omit the attributes conditionally:
+
+```erb
+<body <%= current_user ? %(data-track-controller="#{controller_name}" data-track-action="#{action_name}" data-track-company-id="#{current_user.company_id}" data-track-method="#{request.method}") : "" %>>
+```
+
 ### Controllers — tracking page visits and sessions
 
 Include `ActivityTrackable` in any controller (or `ApplicationController`) to track page visits:
