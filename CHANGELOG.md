@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-04-27
+
+### Added
+- `install_generator`: initializer template now includes a custom `Ahoy::Store` that filters events based on `ActionTrace.configuration.excluded_controllers` and `excluded_actions`, preventing excluded controllers/actions from being recorded as Ahoy events
+
 ## [0.7.0] - 2026-04-27
 
 ### Changed

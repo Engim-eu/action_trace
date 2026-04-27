@@ -14,3 +14,17 @@ end
 PublicActivity::Config.set do
   enabled true
 end
+
+class Ahoy::Store < Ahoy::DatabaseStore
+  def track_event(data)
+    props  = data[:properties] || {}
+    ctrl   = props["controller"]
+    action = props["action"]
+
+    excluded =
+      ActionTrace.configuration.excluded_controllers.include?(ctrl) ||
+      ActionTrace.configuration.excluded_actions.include?(action)
+
+    super unless excluded
+  end
+end
