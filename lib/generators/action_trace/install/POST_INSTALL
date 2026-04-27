@@ -21,7 +21,19 @@
 
        include ActionTrace::DataTrackable
 
-  5. (Optional) Customize views:
+  5. Add data attributes to your layout's <body> tag so the JavaScript
+     tracker can read the current controller, action, company and HTTP method:
+
+       <body
+         data-track-controller="<%= controller_name %>"
+         data-track-action="<%= action_name %>"
+         data-track-company-id="<%= current_user.company_id %>"
+         data-track-method="<%= request.method %>">
+
+     The generated app/javascript/action_trace.js reads these attributes on
+     every Turbo page load and sends a page_visit event via Ahoy.
+
+  6. (Optional) Customize views:
 
        rails generate action_trace:views
        rails generate action_trace:views --controller
