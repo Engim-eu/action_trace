@@ -39,16 +39,16 @@ module ActivityLogFetchable
   def apply_activity_type_filter(scope)
     return scope if context.source.blank?
 
-    case context.source
-    when ActionTrace::ActivityLog::SOURCES[:data_destroy]
-      scope.where('activities.`key` LIKE ?', '%.destroy')
-    when ActionTrace::ActivityLog::SOURCES[:data_change]
-      scope.where('activities.`key` LIKE ?', '%.update')
-    when ActionTrace::ActivityLog::SOURCES[:data_create]
-      scope.where('activities.`key` LIKE ?', '%.create')
-    else
-      scope
-    end
+    key_column = PublicActivity::Activity.arel_table[:key]
+
+    suffix = case context.source
+             when ActionTrace::ActivityLog::SOURCES[:data_destroy] then '%.destroy'
+             when ActionTrace::ActivityLog::SOURCES[:data_change]  then '%.update'
+             when ActionTrace::ActivityLog::SOURCES[:data_create]  then '%.create'
+             else return scope
+             end
+
+    scope.where(key_column.matches(suffix))
   end
 
   def apply_date_filters(scope, model_class)

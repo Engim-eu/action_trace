@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-05-15
+
+### Fixed
+- `ActivityLogFetchable`: `apply_activity_type_filter` now uses Arel (`arel_table[:key].matches`) instead of raw SQL with MySQL-specific backtick quoting, making the gem database-agnostic (SQLite, PostgreSQL, MySQL)
+
 ## [0.8.0] - 2026-04-27
 
 ### Added

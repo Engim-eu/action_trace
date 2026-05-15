@@ -81,7 +81,7 @@ RSpec.describe ActionTrace::FetchActivityLogs, type: :interactor do
 
         it 'applies type filter for data_create' do
           context.source = ActionTrace::ActivityLog::SOURCES[:data_create]
-          expect(instance.base_scope(PublicActivity::Activity).to_sql).to include("activities.`key` LIKE '%.create'")
+          expect(instance.base_scope(PublicActivity::Activity).to_sql).to match(/LIKE '%.create'/)
         end
       end
 
@@ -130,19 +130,19 @@ RSpec.describe ActionTrace::FetchActivityLogs, type: :interactor do
         it 'filters for data_create (.create)' do
           context.source = ActionTrace::ActivityLog::SOURCES[:data_create]
           sql = instance.base_scope(PublicActivity::Activity).to_sql
-          expect(sql).to include("activities.`key` LIKE '%.create'")
+          expect(sql).to match(/LIKE '%.create'/)
         end
 
         it 'filters for data_change (.update)' do
           context.source = ActionTrace::ActivityLog::SOURCES[:data_change]
           sql = instance.base_scope(PublicActivity::Activity).to_sql
-          expect(sql).to include("activities.`key` LIKE '%.update'")
+          expect(sql).to match(/LIKE '%.update'/)
         end
 
         it 'filters for data_destroy (.destroy)' do
           context.source = ActionTrace::ActivityLog::SOURCES[:data_destroy]
           sql = instance.base_scope(PublicActivity::Activity).to_sql
-          expect(sql).to include("activities.`key` LIKE '%.destroy'")
+          expect(sql).to match(/LIKE '%.destroy'/)
         end
 
         it 'returns original scope for unknown sources' do
