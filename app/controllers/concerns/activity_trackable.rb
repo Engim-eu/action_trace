@@ -39,7 +39,8 @@ module ActivityTrackable
   end
 
   def should_skip_tracking?
-    !response.successful? ||
+    (request.headers['X-Sec-Purpose'] == 'prefetch') ||
+      !response.successful? ||
       ActionTrace.configuration.excluded_controllers.include?(controller_name) ||
       ActionTrace.configuration.excluded_actions.include?(action_name) ||
       current_user.nil?
