@@ -19,14 +19,14 @@ RSpec.describe ActionTrace::FetchDataChanges, type: :interactor do
 
   describe '.call' do
     it 'adds public activity records to the collection' do
-      activity = device.create_activity(key: 'area.update', owner: user)
+      activity = device.send(:create_activity, key: 'area.update', owner: user)
 
       described_class.call(context)
       expect(context.raw_collection.any? { |e| e[:id] == "act_#{activity.id}" }).to be true
     end
 
     it 'correctly identifies data_destroy source type' do
-      activity = device.create_activity(key: 'area.destroy', owner: user)
+      activity = device.send(:create_activity, key: 'area.destroy', owner: user)
 
       described_class.call(context)
       log_entry = context.raw_collection.find { |e| e[:id] == "act_#{activity.id}" }

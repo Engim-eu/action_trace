@@ -4,8 +4,23 @@ module ActionTrace
   module DataTrackable
     extend ActiveSupport::Concern
 
+    module ActivityOverride
+      private
+
+      def create_activity(*args)
+        return unless public_activity_enabled?
+
+        options = prepare_settings(*args)
+        return unless call_hook_safe(options[:key].split('.').last)
+
+        reset_activity_instance_options
+        PublicActivity::Activity.create(options.merge(trackable: self))
+      end
+    end
+
     included do
       include PublicActivity::Common
+      prepend ActivityOverride
 
       after_commit :track_create_activity, on: :create
       after_commit :track_update_activity, on: :update
@@ -13,16 +28,6 @@ module ActionTrace
     end
 
     private
-
-    def create_activity(*args)
-      return unless public_activity_enabled?
-
-      options = prepare_settings(*args)
-      return unless call_hook_safe(options[:key].split('.').last)
-
-      reset_activity_instance_options
-      PublicActivity::Activity.create(options.merge(trackable: self))
-    end
 
     def track_create_activity
       track_activity('create')
