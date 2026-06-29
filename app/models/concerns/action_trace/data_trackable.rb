@@ -14,6 +14,16 @@ module ActionTrace
 
     private
 
+    def create_activity(*args)
+      return unless public_activity_enabled?
+
+      options = prepare_settings(*args)
+      return unless call_hook_safe(options[:key].split('.').last)
+
+      reset_activity_instance_options
+      PublicActivity::Activity.create(options.merge(trackable: self))
+    end
+
     def track_create_activity
       track_activity('create')
     end
